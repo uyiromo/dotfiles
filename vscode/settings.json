@@ -1,0 +1,347 @@
+{
+    // 日本語に対して spell checker を無効化する
+    "cSpell.ignoreRegExpList": [
+        "[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"
+    ],
+    // Code Spell Checker 辞書
+    "cSpell.userWords": [
+        "cdable",
+        "clangd",
+        "dups",
+        "gantt",
+        "Gitmoji",
+        "isort",
+        "SAVEHIST",
+        "zhistory",
+        "zplug"
+    ],
+    // カーソルを点滅
+    "editor.cursorBlinking": "blink",
+    // カーソルをブロックスタイルで表示
+    "editor.cursorStyle": "line",
+    // 選択部分の D&D による移動を無効化
+    "editor.dragAndDrop": false,
+    "editor.fontFamily": "Explex Console NF",
+    // リガチャ有効
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    // 貼り付け・保存時のフォーマット有効
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    // bracket ペアを可視化
+    "editor.guides.bracketPairs": true,
+    // activeな bracket ペアの範囲をハイライト
+    "editor.guides.bracketPairsHorizontal": "active",
+    // inlay hint (型) を Ctrl+Alt 押下時のみ表示
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    // 文字間隔を広げる
+    "editor.letterSpacing": 0.5,
+    // 行をフォント 1.5 倍の高さにする
+    "editor.lineHeight": 1.5,
+    // 対応するカッコを常にハイライト
+    "editor.matchBrackets": "always",
+    // ミニマップ有効
+    "editor.minimap.enabled": true,
+    // Ctrl+マウスによる Font Zoom 有効
+    // リセットは `Editor Font Zoom Reset`
+    "editor.mouseWheelZoom": true,
+    // 制御文字を表示
+    "editor.renderControlCharacters": true,
+    // 最終行が newline のみの場合も行番号を表示
+    "editor.renderFinalNewline": "on",
+    // 選択行のハイライト
+    "editor.renderLineHighlight": "line",
+    // 空白文字を常に表示
+    "editor.renderWhitespace": "all",
+    // 選択範囲の表示で丸四角を使う
+    "editor.roundedSelection": true,
+    // 最終行を越えてスクロールを許可
+    "editor.scrollBeyondLastLine": true,
+    // 選択範囲にマッチする部分をハイライト
+    "editor.selectionHighlight": true,
+    // deprecated code に取り消し線
+    "editor.showDeprecated": true,
+    // unused code にフェード
+    "editor.showUnused": true,
+    // スムーススクローリング有効
+    "editor.smoothScrolling": true,
+    // sticky scroll 有効＋最大 5 行 (ネストされた関数の表示)
+    "editor.stickyScroll.enabled": true,
+    "editor.stickyScroll.maxLineCount": 5,
+    // 文字列を折り返さない
+    "editor.wordWrap": "off",
+    // ファイルを開いた時に Explorer を展開しない
+    "explorer.autoReveal": false,
+    // .gitignore のファイルを表示しない
+    "explorer.excludeGitIgnore": true,
+    // file nesting 有効
+    "explorer.fileNesting.enabled": true,
+    // 各種 linter/formatter config を .pre-commit-config.yaml の配下として表示
+    "explorer.fileNesting.patterns": {
+        ".pre-commit-config.yaml": ".hadolint.yaml, .editorconfig, .flake8, .taplo.toml, .yamlfmt.yaml, .yamllint.yaml, eslint*.config.mjs, pyproject.toml"
+    },
+    // 拡張機能の recommendation を無効化
+    "extensions.ignoreRecommendations": true,
+    // encoding の自動判別
+    "files.autoGuessEncoding": true,
+    // 文字コード UTF-8
+    "files.encoding": "utf8",
+    // 改行コード LF
+    "files.eol": "\n",
+    // Git の追跡無効
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.mypy_cache__": true,
+        "**/.svn": true,
+        "**/__pycache__": true
+    },
+    // ファイルの保存時に末尾に改行を追加
+    "files.insertFinalNewline": true,
+    // 保存時に末尾の空白を削除
+    "files.trimTrailingWhitespace": true,
+    // git/hg の変更を監視しない
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    // untracked な変更を分離して表示
+    "git.untrackedChanges": "separate",
+    "remote.SSH.remotePlatform": {
+        "NUC5i3RYH": "linux"
+    },
+    "remote.downloadExtensionsLocally": true,
+    // 開いたファイルの自動 SCM 追跡無効
+    "scm.autoReveal": false,
+    // chord keybinding をシェルで実行する
+    "terminal.integrated.allowChords": false,
+    // Integrated Terminal が Active ならカーソルを点滅＋ブロックスタイル＋non-active ならアウトライン
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "block",
+    "terminal.integrated.cursorStyleInactive": "outline",
+    // 統合ターミナルの環境変数設定
+    // デフォルトのエディタで VSCode を使用する
+    "terminal.integrated.env.linux": {
+        "EDITOR": "code --wait",
+        "GIT_EDITOR": "code --wait",
+        "VISUAL": "code --wait"
+    },
+    // Terminal の Zoom 許可
+    "terminal.integrated.mouseWheelZoom": true,
+    // Extension: vim: Ctrl+a, Ctrl+C, Ctrl+V, Ctrl+F, Ctrl+I を無効化
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-c>": false,
+        "<C-d>": true,
+        "<C-f>": false,
+        "<C-i>": false,
+        "<C-s>": false,
+        "<C-u>": true,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-z>": false
+    },
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    // Extension: vim: insertMode のバインディング
+    "vim.insertModeKeyBindings": [
+        {
+            // jj => Esc
+            "after": [
+                "<Esc>"
+            ],
+            "before": [
+                "j",
+                "j"
+            ]
+        },
+        {
+            // dd (delete line)
+            "after": [
+                "<Esc>",
+                "d",
+                "d",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "d",
+                "d"
+            ]
+        },
+        {
+            // dw (delete word)
+            "after": [
+                "<Esc>",
+                "d",
+                "w",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "d",
+                "w"
+            ]
+        },
+        {
+            // D (delete until EOL)
+            "after": [
+                "<Esc>",
+                "D",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "D"
+            ]
+        },
+        {
+            // u (undo)
+            "after": [
+                "<Esc>",
+                "u",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "u"
+            ]
+        },
+        {
+            // redo
+            "after": [
+                "<Esc>",
+                "<C-r>",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "r"
+            ]
+        },
+        {
+            // :w
+            "after": [
+                "<Esc>",
+                ":w",
+                "<CR>",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "s"
+            ]
+        },
+        {
+            "after": [
+                "<Esc>",
+                "y",
+                "y",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "y",
+                "y"
+            ]
+        },
+        {
+            "after": [
+                "<Esc>",
+                "p",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "p"
+            ]
+        },
+        {
+            "after": [
+                "<Esc>",
+                "%",
+                "i"
+            ],
+            "before": [
+                "<leader>",
+                "%"
+            ]
+        }
+    ],
+    // Extension: vim: \ を Leader key に設定
+    "vim.leader": "\\",
+    "vim.normalModeKeyBindingsNonRecursive": [],
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    // Extension: vim: 行端の移動を許可
+    "vim.whichwrap": "b,s,h,l,<,>,[,],~",
+    "workbench.colorTheme": "Dracula Theme Soft",
+    "editor.tokenColorCustomizations": {
+        "comments": "#ADB9D3"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    // Extension: Git: `--no-verify` を GUI から許可
+    "git.allowNoVerifyCommit": true,
+    // Extension: Git: `--force push` を GUI から許可
+    "git.allowForcePush": true,
+    // Extension: Git: ".git" の自動検出無効化
+    "git.autoRepositoryDetection": false,
+    // Extension: Gitmoji: code による検索を許可
+    "gitmoji.showEmojiCode": true,
+    // Editor Tab の色を変更
+    // - tab.activeForeground: Active EditorGroup の Active Tab の文字色
+    // - tab.inactiveForeground: Active EditorGroup の Non-Active Tab の文字色
+    // - tab.unfocusedActiveForeground: Non-Active EditorGroup の Active Tab の文字色
+    // - tab.unfocusedInactiveForeground: Non-Active EditorGroup の Non-Active Tab の文字色
+    // - scrollbarSlider.hoverBackground: マウスオーバーした時のスクロールバーの色
+    // - scrollbarSlider.activeBackground: スクロールバーをドラッグしている時の色
+    // - scrollbarSlider.background: スクロールバーのデフォルト色
+    // - editor.selectionBackground: 選択範囲の色
+    // - editorGroup.dropBackground: ドロップ時の色
+    // - sideBar.foreground: サイドバーの文字色
+    // - editorSuggestWidget.selectedBackground: 選択された候補の背景色
+    "workbench.colorCustomizations": {
+        "tab.activeForeground": "#FFFFFF",
+        "tab.inactiveForeground": "#ADB9D3",
+        "tab.unfocusedActiveForeground": "#ADB9D3",
+        "tab.unfocusedInactiveForeground": "#ADB9D3",
+        "scrollbarSlider.hoverBackground": "#FFFFFF",
+        "scrollbarSlider.activeBackground": "#FFFFFF",
+        "scrollbarSlider.background": "#ADB9D3",
+        "editor.selectionBackground": "#ff00c8",
+        "editorGroup.dropBackground": "#ADB9D3",
+        "sideBar.foreground": "#FFFFFF",
+        "editorSuggestWidget.selectedBackground": "#ff00c8",
+        "activityBar.foreground": "#04ff00",
+        "activityBar.background": "#000000",
+        "activityBar.inactiveForeground": "#FFFFFF",
+        "editorActionList.focusBackground": "#ff00c8",
+        "list.activeSelectionBackground": "#ff00c8",
+        "contrastBorder": "#ADB9D3",
+        //"activityBar.border": "#ADB9D3",
+        "sideBarSectionHeader.border": "#ADB9D3",
+    },
+    // Extension: isort: black profile を使用
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "python.analysis.aiCodeActions": {
+        "generateDocstring": true,
+    },
+    // docstring は Google style で生成
+    "autoDocstring.docstringFormat": "google",
+    // Python 特有設定
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+        },
+    },
+    "markdown-mermaid.darkModeTheme": "default",
+    // .editorconfig で ignore 指定のファイルはフォーマットしない
+    "shfmt.formatIgnored": false,
+}
