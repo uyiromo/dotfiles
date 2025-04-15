@@ -1,0 +1,38 @@
+#!/bin/bash
+set -eu
+set -o pipefail
+
+pwd=${PWD}
+dotenv="${pwd}/.env"
+venv="${pwd}/.venv"
+requirements="${pwd}/requirements.txt"
+
+#
+# load $HOME/.env, and .env
+#
+# shellcheck disable=SC1091
+source "${HOME}/.env"
+if [[ -e "${dotenv}" ]]; then
+    # shellcheck disable=SC1090
+    source "${dotenv}"
+fi
+
+#
+# Initialize venv
+#
+if [[ ! -e $venv ]]; then
+    virtualenv -p "python3.13" "${venv}"
+    chmod +x "${venv}/bin/activate"
+fi
+echo "*** '${venv}' initialized"
+
+#
+# Activate venv
+#
+VIRTUAL_ENV=${VIRTUAL_ENV:-""}
+if [[ "${VIRTUAL_ENV}" == "" ]]; then
+    # shellcheck disable=SC1091
+    source "${venv}/bin/activate"
+    pip3 install -r "${requirements}"
+fi
+echo "*** '${venv}' activated"

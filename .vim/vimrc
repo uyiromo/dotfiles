@@ -1,0 +1,466 @@
+scriptencoding utf-8
+set encoding=utf-8
+
+set nocompatible
+filetype off
+
+"
+" ------------- Plugins  -------------
+"
+" Set Vundle Runtime Path
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/vim
+
+call vundle#begin()
+    " Vundle
+    Plugin 'VundleVim/Vundle.vim'
+
+    " lightline (status line)
+    Plugin 'itchyny/lightline.vim'
+
+    " gitbranch
+    Plugin 'itchyny/vim-gitbranch'
+
+    " OSC52
+    " Share Clipboard between the host and the guest using OSC52
+    " Usage (Visual Mode): Oscyank
+    Plugin 'greymd/oscyank.vim'
+
+    " Colorschemes
+    "Plugin 'sainnhe/sonokai'
+    "Plugin 'dracula/vim'
+    Plugin 'uyiromo/vim-dracula'
+
+    " Comment out
+    " `gcc` to comment-out mutliple lines
+    Plugin 'tpope/vim-commentary'
+
+    " Vimlint
+    " https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic-checkers.txt
+    Plugin 'ynkdir/vim-vimlparser'
+    Plugin 'syngan/vim-vimlint'
+
+    " Tagbar
+    Plugin 'preservim/tagbar'
+
+    " Async Completion
+    Plugin 'prabirshrestha/asyncomplete.vim'
+    Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+
+    " Rust
+    Plugin 'rust-lang/rust.vim'
+
+    " C
+    " Plugin 'rhysd/vim-clang-format'
+
+    " Language Server Support
+    Plugin 'prabirshrestha/vim-lsp'
+    Plugin 'mattn/vim-lsp-settings'
+
+    " Formatter
+    " https://github.com/google/vim-codefmt
+    Plugin 'google/vim-codefmt'
+    Plugin 'google/vim-maktaba'
+    Plugin 'google/vim-glaive'
+
+    " python
+    Plugin 'brentyi/isort.vim'
+
+call vundle#end()
+
+filetype plugin indent on
+
+
+
+" Syntax highlight
+syntax on
+"colorscheme sonokai
+colorscheme dracula
+
+
+"
+" ------------- Plugin: lightline -------------
+"
+" https://github.com/itchyny/lightline.vim
+" https://github.com/itchyny/vim-gitbranch
+let g:lightline = {
+    \ 'colorscheme': 'powerline',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ]
+    \           ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'gitbranch#name',
+    \ },
+    \ }
+
+
+
+
+
+
+
+"
+" --------- vim-lsp-settings
+"
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'configurationSources': ['flake8'],
+\         'plugins': {
+\           'flake8':      { 'enabled': 1, 'ignore': 'E501', 'exclude': ['html'] },
+\           'mccabe':      { 'enabled': 0 },
+\           'pycodestyle': { 'enabled': 0 },
+\           'pyflakes':    { 'enabled': 0 },
+\         }
+\       }
+\     }
+\   }
+\}
+
+
+"
+" --------- vim-codefmt -----------
+"
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript,typescript,arduino AutoFormatBuffer clang-format
+  autocmd FileType clojure AutoFormatBuffer cljstyle
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType elixir,eelixir,heex AutoFormatBuffer mixformat
+  autocmd FileType fish AutoFormatBuffer fish_indent
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType haskell AutoFormatBuffer ormolu
+  " Alternative for web languages: prettier
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType jsonnet AutoFormatBuffer jsonnetfmt
+  autocmd FileType julia AutoFormatBuffer JuliaFormatter
+  autocmd FileType kotlin AutoFormatBuffer ktfmt
+  autocmd FileType lua AutoFormatBuffer luaformatterfiveone
+  autocmd FileType markdown AutoFormatBuffer prettier
+  autocmd FileType ocaml AutoFormatBuffer ocamlformat
+  autocmd FileType python AutoFormatBuffer black
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType ruby AutoFormatBuffer rubocop
+  autocmd FileType rust AutoFormatBuffer rustfmt
+  autocmd FileType swift AutoFormatBuffer swift-format
+  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType sh AutoFormatBuffer shfmt
+augroup END
+
+
+" auto isort
+"augroup isort
+"  autocmd!
+"  autocmd BufWritePre *.py call isort#Isort(0, line('$'), v:null, v:false)
+"augroup END
+
+" format toml
+" formatprg requiements:
+" - stdin : original source code
+" - stdout: formatted source
+" - stderr: DO NOT output
+autocmd FileType toml set formatprg=taplo\ format\ -\ 2>/dev/null
+function! s:format()
+    let l:curw = winsaveview()
+    silent! exe "normal! a \<bs>\<esc>" | undojoin | exe "normal gggqG"
+    call winrestview(l:curw)
+endfunction
+
+
+
+augroup format-toml
+  autocmd!
+  autocmd BufWritePre *.toml call s:format()
+augroup END
+
+call glaive#Install()
+Glaive codefmt shfmt_options=`["-i", "4"]`
+
+
+
+
+
+"
+" -------- Syntastic -------------
+"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" Disable .py
+" let g:syntastic_python_checkers=['']
+" let g:syntastic_c_checkers=['']
+" let g:syntastic_checkers=['']
+
+
+
+" ------------- Key Remapping -------------
+"
+" backspace
+noremap! <C-?> <C-h>
+
+" inc/dec indents with TAB or Shift-TAB
+nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
+vnoremap <Tab>   >gv
+vnoremap <S-Tab> <gv
+
+" jj invokes <ESC>
+noremap <silent> jj <ESC>
+inoremap <silent> jj <ESC>
+
+
+inoremap <silent> <C-k><C-k> <C-o>
+inoremap <silent> <C-v><C-v> <C-o>v
+inoremap <silent> <C-y><C-y> <C-o>yy
+inoremap <silent> <C-p><C-p> <C-o>p
+inoremap <silent> <C-w><C-w> <ESC>:w<CR>:w<CR>i
+noremap <silent> <C-w><C-w> :w<CR>:w<CR>
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+
+" Lsp
+noremap <silent> <F2> :LspDocumentDiagnostics<CR>
+noremap <silent> <F3> :LspNextDiagnostic<CR>
+noremap <silent> <F4> :LspNextError<CR>
+noremap <silent> <F5> :LspHover<CR>
+inoremap <silent> <F2> <ESC>:LspDocumentDiagnostics<CR>
+inoremap <silent> <F3> <ESC>:LspNextDiagnostic<CR>
+inoremap <silent> <F4> <ESC>:LspNextError<CR>
+inoremap <silent> <F5> <ESC>:LspHover<CR>
+
+
+" codefmt
+noremap <silent> <F8> :FormatCode<CR>
+inoremap <silent> <F8> <ESC>:FormatCode<CR>
+
+
+" auto-insert closing bracket, brace, and so on
+inoremap { {}<Esc>ha
+inoremap ( ()<Esc>ha
+inoremap [ []<Esc>ha
+inoremap " ""<Esc>ha
+inoremap ' ''<Esc>ha
+inoremap ` ``<Esc>ha
+
+" Highlight brace/bracket
+set showmatch matchtime=1
+
+" TAB width
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" Keep Indent on LF
+set smartindent
+
+
+
+"
+" ------------- Basic Configs -------------
+"
+" Use UTF-8
+set fenc=utf-8
+
+" Line number
+set number
+
+" Show current cursor line
+set cursorline
+"set cursorcolumn
+
+" Go to the last edited position
+autocmd BufReadPost * silent! normal! g`"
+
+" No warning when switching unsaved buffer
+set hidden
+
+" auto re-read
+set autoread
+
+" No backup on overwrite
+set nowritebackup
+set nobackup
+
+" Show executing cmd
+set showcmd
+
+" fold on marker
+set foldmethod=marker
+
+" Enable visual mode on empty character
+set virtualedit=block
+
+" Enable backspace on visual mode
+set backspace=indent,eol,start
+
+" Two-byte characters
+set ambiwidth=double
+
+" Enable wildmenu
+set wildmenu
+set wildmode=list:longest
+
+" No swap file
+set noswapfile
+
+" Move across lines
+set whichwrap=b,s,h,l,<,>,[,],~
+
+" TextWidth
+"au BufRead,BufNewFile *.c setlocal textwidth=80
+set textwidth=120
+
+" auto change directory
+set autochdir
+
+" No beep on error message
+set noerrorbells
+
+" Set command line height (2-lines)
+set cmdheight=2
+
+" Show status line always
+set laststatus=2
+
+" Disable trancation on long lines
+set display=lastline
+
+" Show invisible characters
+" Show TAB as '^' and TRAILING SPACE as '~'
+set list
+set listchars=tab:»\ ,trail:«
+"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+" The number of command history
+set history=10000
+
+" Change comment line color
+hi Comment ctermfg=3
+
+" Expand TAB with SPACE
+set expandtab
+
+
+
+"
+" ------------- Search -------------
+"
+" Ignore sensitive search
+set ignorecase
+set smartcase
+
+" Go to head when reach end
+set wrapscan
+
+" Enable incremental search
+set incsearch
+
+" Highlight search result
+set hlsearch
+
+" ESC-ESC to off highlight
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+
+"
+" ------------- Rust Specific -------------
+"
+" Rustfmt on save
+let g:rustfmt_autosave = 1
+
+" rust-analyzer as Language Server
+let g:lsp_settings_filetype_rust = 'rust-analyzer'
+if executable('rust-analyzer')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'rust-analyzer',
+                \ 'cmd': {server_info->['rust-analyzer']},
+                \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+                \ 'whitelist': ['rust'],
+                \ })
+endif
+
+" Automatic LspCheck
+"augroup lsp-rust
+"  autocmd!
+"  autocmd BufWritePost *.rs LspDocumentDiagnostic
+"augroup END
+
+
+
+
+"
+" ------------- ctags -------------
+"
+" Search '.tags' upward until $HOME
+set tags=.tags;$HOME
+
+" Auto-Generate .tags when buffer is saved
+function! s:generateCtags() abort
+    let tagsFileName = '.tags'
+
+    " Search '.tags' upward until $HOME
+    let tagsFilePath = findfile(tagsFileName, '.;$HOME')
+
+    " if cannot find tagsFileName, try to search '.git' directory
+    if tagsFilePath ==# ''
+         let tagsFilePath = finddir('.git', '.;$HOME')
+    endif
+
+    " if cannot find tagsFileName for both '.tags' and '.git', do nothing
+    if tagsFilePath ==# ''
+         return
+    endif
+
+    " Generate .tags
+    let tagsFileDir = fnamemodify(tagsFilePath, ':p:h')
+    execute 'silent !cd' tagsFileDir '&& ctags -R -f' tagsFileName '2> /dev/null &'
+endfunction
+
+augroup source ctags
+    autocmd!
+    auto BufWritePost * call s:generateCtags()
+augroup END
+
+
+
+"
+" ------------- others -------------
+"
+
+" auto reload when ediing .vimrc
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $HOME/.vim/vimrc
+augroup END
+
+command! Vimrc source $HOME/.vim/vimrc
+
+
+" Highlight OverLength characters
+augroup vimrc_autocmds
+    autocmd!
+    autocmd BufRead * highlight OverLength ctermbg=red ctermfg=white
+    autocmd BufRead * match OverLength /\%121v.*/
+augroup END
+
+
+" auto show LspDocumentDiagnostics
+augroup lsp-diag
+  autocmd!
+  autocmd BufWritePost * LspDocumentDiagnostic
+augroup END

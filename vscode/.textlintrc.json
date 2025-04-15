@@ -1,0 +1,145 @@
+{
+    "plugins": {},
+    "filters": {},
+    "rules": {
+        "@proofdict/proofdict": {
+            "dictURL": "https://azu.github.io/proof-dictionary/"
+        },
+        "preset-ja-spacing": {
+            // 半角・全角間のスペース
+            // - 常に挿入する
+            // - プレーンテキスト以外は対象外
+            // - 例外無し
+            "ja-space-between-half-and-full-width": {
+                "space": "always",
+                "lintStyledNode": false,
+                "allows": []
+            },
+            // 全角・全角間のスペース
+            // - 常に挿入しない
+            "ja-no-space-between-full-width": true,
+            // カタカナ間の区切りスタイル
+            // - 中点 or 半角スペース
+            "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+            // カッコと文字の間のスペース
+            // - 常に挿入しない
+            "ja-no-space-around-parentheses": true,
+            // 感嘆符前後のスペース
+            // - 文末にある場合のみ、後ろに全角スペースを挿入する
+            "ja-space-after-exclamation": true,
+            // インラインコード前後のスペース
+            // - 前後が日本語なら挿入
+            "ja-space-around-code": true,
+            // リンクテキスト前後のスペース
+            // - 前後が日本語なら挿入
+            "ja-space-around-link": true
+        },
+        "preset-ja-technical-writing": {
+            // 一文の最大長
+            "sentence-length": {
+                "max": 100
+            },
+            // 一文の最大カンマ数
+            "max-comma": {
+                "max": 3
+            },
+            // 一文の最大読点数
+            "max-ten": {
+                "max": 3
+            },
+            // 連続漢字数
+            "max-kanji-continuous-len": {
+                "max": 6,
+                "allow": []
+            },
+            // 漢数字・算用数字
+            "arabic-kanji-numbers": true,
+            // 文調の統一
+            "no-mix-dearu-desumasu": {
+                "preferInHeader": "",
+                "preferInBody": "ですます",
+                "preferInList": "である",
+                "strict": false
+            },
+            // 句点は。を使用
+            "ja-no-mixed-period": {
+                "periodMark": "。"
+            },
+            // 二重否定の禁止
+            "no-double-negative-ja": true,
+            // ら抜き言葉の禁止
+            "no-dropping-the-ra": true,
+            // 逆接接続助詞は一回のみ
+            "no-doubled-conjunctive-particle-ga": true,
+            // 同じ接続詞を連続して使用しない
+            "no-doubled-conjunction": true,
+            // 同じ助詞を連続して使用しない
+            "no-doubled-joshi": {
+                "min_interval": 2
+            },
+            // UTF8-MAC 濁点禁止
+            "no-nfd": true,
+            // 不要な制御文字禁止
+            "no-invalid-control-character": true,
+            // ゼロ幅スペース禁止
+            "no-zero-width-spaces": true,
+            // 感嘆符の禁止 (disable)
+            "no-exclamation-question-mark": false,
+            // 半角カタカナ禁止
+            "no-hankaku-kana": true,
+            // 弱い表現禁止 (disable)
+            "ja-no-weak-phrase": false,
+            // 同一単語の連続禁止
+            "ja-no-successive-word": true,
+            // 日本語の誤用チェック
+            "ja-no-abusage": true,
+            // 冗長表現禁止
+            "ja-no-redundant-expression": true,
+            // 入力ミス由来のアルファベットチェック
+            "ja-unnatural-alphabet": true,
+            // カッコの対応チェック
+            "no-unmatched-pair": true
+        },
+        "preset-jtf-style": {
+            "1.1.1.本文": true,
+            "1.1.2.見出し": true,
+            "1.1.3.箇条書き": true,
+            "1.1.5.図表のキャプション": true,
+            "1.2.1.句点(。)と読点(、)": true,
+            "1.2.2.ピリオド(.)とカンマ(,)": true,
+            "2.1.2.漢字": false,
+            "2.1.5.カタカナ": false,
+            "2.1.6.カタカナの長音": false,
+            "2.1.8.算用数字": true,
+            "2.1.9.アルファベット": true,
+            "2.1.10.算用数字の位取りの表記": true,
+            "2.2.1.ひらがなと漢字の使い分け": false,
+            "2.2.2.算用数字と漢数字の使い分け": true,
+            "2.2.3.一部の助数詞の表記": true,
+            "3.1.1.全角文字と半角文字の間": false,
+            "3.1.2.全角文字どうし": true,
+            "3.2.カタカナ語間のスペースの有無": true,
+            "3.3.かっこ類と隣接する文字の間のスペースの有無": {
+                " requireOutsideHalfParentheses": true
+            },
+            "4.1.1.句点(。)": true,
+            "4.1.3.ピリオド(.)、カンマ(,)": true,
+            "4.2.1.感嘆符(！)": true,
+            "4.2.2.疑問符(？)": true,
+            "4.2.4.中黒(・)": true,
+            "4.2.5.波線(〜)": true,
+            "4.2.6.ハイフン(-)": true,
+            "4.2.7.コロン(：)": true,
+            "4.2.8.セミコロン(;)": true,
+            "4.2.9.ダッシュ(-)": true,
+            "4.3.1.丸かっこ（）": true,
+            "4.3.2.大かっこ［］": true,
+            "4.3.3.かぎかっこ「」": true,
+            "4.3.4.二重かぎかっこ『』": true,
+            "4.3.5.二重引用符": true,
+            "4.3.6.中かっこ{ }": true,
+            "4.3.7.山かっこ<>": true,
+            "4.3.8.一重引用符": true
+        }
+    }
+}
