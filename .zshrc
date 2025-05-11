@@ -156,38 +156,55 @@ PROMPT_BASE='%F{green}%# %f'   # PROMPT: %
 RPROMPT='[%m @ %~]'              # RPROMPT: [<hostname> @ <path>]
 RPROMPT2=${RPROMPT}              # RPROMPT2 is same as RPROMPT
 
-# vim-mode
-function zle-line-pre-redraw {
-    if [[ $REGION_ACTIVE -ne 0 ]]; then
-        NEW_PROMPT='%F{red}Visual%f %F{green}%#%f '
-    elif [[ $KEYMAP = vicmd ]]; then
-        NEW_PROMPT='%F{green}Normal%f %F{green}%#%f '
-    elif [[ $KEYMAP = main ]]; then
-        NEW_PROMPT='Insert %F{green}%#%f '
-    fi
+# prompt
+function set_prompt {
+    NEW_PROMPT="%F{green}%#%f "
 
-    if [[ $PROMPT = $NEW_PROMPT ]]; then
-        return
-    fi
-
-    PROMPT=$NEW_PROMPT
-
-    zle reset-prompt
-}
-function zle-keymap-select {
+    # vimode
     case $KEYMAP in
-        vicmd)
-            PROMPT='%F{green}Normal%f %F{green}%#%f '
-            ;;
         viins|main)
-            PROMPT='Insert %F{green}%#%f '
+            NEW_PROMPT="%F{white}INSERT%f ${NEW_PROMPT}"
+            ;;
+        vicmd)
+            NEW_PROMPT="%K{green}%F{white}NORMAL%f%k ${NEW_PROMPT}"
+            ;;
+        visual)
+            NEW_PROMPT="%K{red}%F{white}VISUAL%f%k ${NEW_PROMPT}"
+            ;;
+        *)
             ;;
     esac
 
-    zle reset-prompt
+    # git branch
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        local branch_name=$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+        if [[ -n "$branch_name" ]]; then
+            # Check if repo is dirty (has uncommitted changes)
+            if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
+                branch_name="${branch_name}*"
+            fi
+            NEW_PROMPT="%F{cyan}:${branch_name}%f%k ${NEW_PROMPT}"
+        fi
+    fi
+
+    # virtualenv
+    if [[ -n $VIRTUAL_ENV ]]; then
+        VENV_NAME=$(basename "$VIRTUAL_ENV")
+        NEW_PROMPT="%F{blue}(${VENV_NAME})%f%k ${NEW_PROMPT}"
+    fi
+
+    if [[ $PROMPT = $NEW_PROMPT ]]; then
+        : # do nothing (no-op)
+    else
+        PROMPT=$NEW_PROMPT
+        zle reset-prompt
+    fi
+
+    return
 }
-zle -N zle-line-init zle-line-pre-redraw
-zle -N zle-keymap-select
+
+zle -N zle-line-init set_prompt
+zle -N zle-keymap-select set_prompt
 
 #
 # PATH
