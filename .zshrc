@@ -215,6 +215,16 @@ export PATH=${HOME}/bin:${HOME}/local/bin:${HOME}/.local/bin:${PATH}
 #
 # Aliases
 #
+function xfind {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: xfind <directory> <pattern>"
+        return 1
+    fi
+
+    find "${1}" -name "${2}"
+}
+
+
 alias tmux='tmux -u'
 alias ta='tmux a'
 
