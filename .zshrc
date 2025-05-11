@@ -158,18 +158,18 @@ RPROMPT2=${RPROMPT}              # RPROMPT2 is same as RPROMPT
 
 # prompt
 function set_prompt {
-    NEW_PROMPT="%F{green}%#%f "
+    NEW_PROMPT=""
 
     # vimode
     case $KEYMAP in
         viins|main)
-            NEW_PROMPT="%F{white}INSERT%f ${NEW_PROMPT}"
+            NEW_PROMPT="%F{green}%#%#%f "
             ;;
         vicmd)
-            NEW_PROMPT="%K{green}%F{white}NORMAL%f%k ${NEW_PROMPT}"
+            NEW_PROMPT="%K{green}%F{white}%#%#%f%k "
             ;;
         visual)
-            NEW_PROMPT="%K{red}%F{white}VISUAL%f%k ${NEW_PROMPT}"
+            NEW_PROMPT="%K{red}%F{white}%#%#%f%k "
             ;;
         *)
             ;;
