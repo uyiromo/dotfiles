@@ -1,5 +1,30 @@
 # dotfiles
 
+## Init
+
+```sh
+sudo apt install -y git
+
+mkdir -p $HOME/.ssh
+chmod 700 $HOME/.ssh
+
+cat << __EOF__ > $HOME/.ssh/config
+Host github*
+  HostName github.com
+  User git
+  Port 22
+  IdentityFile %d/.ssh/pk_github
+  IdentitiesOnly yes
+__EOF__
+
+cat << __EOF__ > $HOME/.ssh/pk_github
+(Github Private Key)
+__EOF__
+chmod 600 $HOME/.ssh/pk_github
+
+git clone git@github.com:uyiromo/dotfiles.git
+```
+
 ## Install
 
 ```sh
