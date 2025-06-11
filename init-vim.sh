@@ -2,6 +2,15 @@
 set -ue
 set -o pipefail
 
+if command -v apt >/dev/null 2>&1; then
+    sudo apt install -y vim
+elif command -v dnf >/dev/null 2>&1; then
+    sudo dnf install -y vim
+else
+    echo "Neither apt-get nor dnf found. Exiting."
+    exit 1
+fi
+
 ln -sb "$(realpath .vim)" "${HOME}/.vim"
 
 if [[ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]]; then

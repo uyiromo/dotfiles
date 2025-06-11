@@ -39,6 +39,7 @@ git commit -m ":tada: origin" --allow-empty --no-verify
 '
 
 # bump submodules
+mkdir -p "${HOME}/bin"
 
 chmod +x ./scripts/bump.sh
 # shellcheck disable=SC2016
