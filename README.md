@@ -1,5 +1,30 @@
 # dotfiles
 
+## Init
+
+```sh
+sudo apt install -y git
+
+mkdir -p $HOME/.ssh
+chmod 700 $HOME/.ssh
+
+cat << __EOF__ > $HOME/.ssh/config
+Host github*
+  HostName github.com
+  User git
+  Port 22
+  IdentityFile %d/.ssh/pk_github
+  IdentitiesOnly yes
+__EOF__
+
+cat << __EOF__ > $HOME/.ssh/pk_github
+(Github Private Key)
+__EOF__
+chmod 600 $HOME/.ssh/pk_github
+
+git clone git@github.com:uyiromo/dotfiles.git
+```
+
 ## Install
 
 ```sh
@@ -40,7 +65,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 ### LLM
 
 - [Copilot](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot)
-- [Cline](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
+- [Copilot Chat](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot-chat)
 
 ### Git
 
@@ -60,6 +85,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 ### Python
 
 - [Python](https://marketplace.visualstudio.com/items/?itemName=ms-python.python)
+- [Pylance](https://marketplace.visualstudio.com/items/?itemName=ms-python.vscode-pylance)
 - [flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8)
 - [isort](https://marketplace.visualstudio.com/items/?itemName=ms-python.isort)
 - [black](https://marketplace.visualstudio.com/items/?itemName=ms-python.black-formatter)
@@ -78,6 +104,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 
 - [shfmt](https://marketplace.visualstudio.com/items/?itemName=mkhl.shfmt)
 - [shellcheck](https://marketplace.visualstudio.com/items/?itemName=timonwong.shellcheck)
+- [editorconfig](https://marketplace.visualstudio.com/items/?itemName=EditorConfig.EditorConfig)
 
 ### textlint
 
