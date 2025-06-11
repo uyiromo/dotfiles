@@ -65,7 +65,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 ### LLM
 
 - [Copilot](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot)
-- [Cline](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
+- [Copilot Chat](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot-chat)
 
 ### Git
 
@@ -85,6 +85,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 ### Python
 
 - [Python](https://marketplace.visualstudio.com/items/?itemName=ms-python.python)
+- [Pylance](https://marketplace.visualstudio.com/items/?itemName=ms-python.vscode-pylance)
 - [flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8)
 - [isort](https://marketplace.visualstudio.com/items/?itemName=ms-python.isort)
 - [black](https://marketplace.visualstudio.com/items/?itemName=ms-python.black-formatter)
@@ -103,6 +104,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 
 - [shfmt](https://marketplace.visualstudio.com/items/?itemName=mkhl.shfmt)
 - [shellcheck](https://marketplace.visualstudio.com/items/?itemName=timonwong.shellcheck)
+- [editorconfig](https://marketplace.visualstudio.com/items/?itemName=EditorConfig.EditorConfig)
 
 ### textlint
 
