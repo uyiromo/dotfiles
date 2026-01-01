@@ -28,10 +28,10 @@ git clone git@github.com:uyiromo/dotfiles.git
 ## Install
 
 ```sh
+./init-zsh.sh
 ./init-ssh.sh
 ./init-tmux.sh
 ./init-vim.sh
-./init-zsh.sh
 GIT_USER=... GIT_EMAIL=... ./init-git.sh
 ```
 
