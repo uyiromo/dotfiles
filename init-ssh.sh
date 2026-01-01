@@ -8,7 +8,10 @@ mkdir -p "${dotssh}"
 chmod 700 "${dotssh}"
 
 # ln
-ln -sb "$(realpath .ssh/config)" "${dotssh}/config"
+if [[ -e "${dotssh}/config" ]]; then
+    mv "${dotssh}/config" "${dotssh}/config.bak-$(date +%s)"
+fi
+ln -s "$(realpath .ssh/config)" "${dotssh}/config"
 chmod 600 "${dotssh}/config"
 
 # setup github.com public key

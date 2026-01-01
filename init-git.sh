@@ -78,7 +78,7 @@ git config --global alias.m2m "! ${HOME}/bin/m2m"
 }
 
 # pre-commit
-pip3 install pre-commit
+pipx install pre-commit
 # shellcheck disable=SC2016
 git config --global alias.precommit-install '!
 toplevel=$(git rev-parse --show-toplevel)
