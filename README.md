@@ -86,9 +86,7 @@ GIT_USER=... GIT_EMAIL=... ./init-git.sh
 
 - [Python](https://marketplace.visualstudio.com/items/?itemName=ms-python.python)
 - [Pylance](https://marketplace.visualstudio.com/items/?itemName=ms-python.vscode-pylance)
-- [flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8)
-- [isort](https://marketplace.visualstudio.com/items/?itemName=ms-python.isort)
-- [black](https://marketplace.visualstudio.com/items/?itemName=ms-python.black-formatter)
+- [charliermarsh.ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 - [autoDocstring](https://marketplace.visualstudio.com/items/?itemName=njpwerner.autodocstring)
 
 ### Markdown
@@ -115,5 +113,4 @@ npm install \
     textlint-rule-preset-ja-technical-writing \
     textlint-rule-preset-ja-spacing \
     @proofdict/textlint-rule-proofdict
-
 ```
