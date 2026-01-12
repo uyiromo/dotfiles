@@ -292,3 +292,10 @@ autoload -Uz _zinit
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 
+
+#
+# brew
+#
+if [ "Darwin" = "$(uname -s)" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
